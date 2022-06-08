@@ -1,0 +1,51 @@
+﻿@model List<U19032618_HW03.Models.FileModel>
+@{
+    ViewBag.Title = "Documents of any file type";
+    
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<body>
+    <table class="table">
+        <tr>
+            <th>File Name</th>
+            <th>Download Option</th>
+            <th>Delete Option</th>
+        </tr>
+        @foreach(var files in Model)
+            {
+                <tr>
+                    <td>@files.FileName</td>
+                    @* reference conroller using url action *@
+                    <td class="btn btn-success" onclick="window.location.href = '@Url.Action("DownloadFile", "Home", new {FileName = files.FileName}))'">
+                        Download
+                    </td>
+                    <td>
+                        <button class="btn" id="deletebtn" for="deletebtn" onclick="window.location.href = '@Url.Action("DeletFile", "Home", new {FileName = files.FileName}))'">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+    </table>
+</body>
+
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+
+        $("#downloadbtn").click(function (e) {
+            e.target();
+            e.preventDefault();
+            window.location.href = this.closest();//find and download closest file
+        });
+
+        $("#deletebtn").click(function (e) {
+            e.target();
+            this.remove("<tr></tr>");
+            this.remove(); //remove closest file from database
+        });
+
+    });
+</script>

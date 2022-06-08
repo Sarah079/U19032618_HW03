@@ -1,0 +1,59 @@
+﻿@model List<U19032618_HW03.Models.FileModel>
+@{
+    ViewBag.Title = "Images";
+}
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../source/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
+</head>
+
+
+<h2>Images page</h2>
+<h3>...'Media/Images' folder</h3>
+
+<div class="row">
+    @{
+
+        foreach (var files in Model)
+        {
+
+            <div class="col-sm-4">
+                <div class="row">
+                    <a class="gallery a" href="@files.FileName" data-fancybox-group="gallery" title="image"><img src="@files.FileName" height="200" width="300" alt="" /></a>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <btn class="btn btn-success" onclick="window.location.href = '@Url.Action("DownloadImage", "Home", new {FileName = files.FileName}))'">
+                            Download
+                        </btn>
+                    </div>
+                    <div class="col-sm-6">
+                        <btn>
+                            <button class="btn" id="deletebtn" for="deletebtn" onclick="window.location.href = '@Url.Action("DeleteImage", "Home", new {FileName = files.FileName}))'">
+                                Delete
+                            </button>
+                        </btn>
+                    </div>
+
+
+                </div>
+
+            </div>
+        }
+    }
+
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        $('.gallery a').fancybox();
+
+
+    });
+</script>
+
+
+
+

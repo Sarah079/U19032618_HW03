@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "My Media";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="row">
+    <div class="col-lg-8 col-sm-8">
+        <p>Please use the buttons on the right of the page to select what type of file you would like to upload. Once you have selected an option find the file you would like to upload. Once the file is uploadedpress submit. Then we've got your file!!' </p>
+    </div>
+    @using (Html.BeginForm("HomePage", "Home", FormMethod.Post, new {enctype="multipart/form-data"}))
+    {
+        
+        <div class="col-lg-4 col-sm-4">
+            <form>
+                @*create radio buttons*@
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="documentoption" checked>Document
+                    <label class="form-check-label" for="radiobtn"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="imageoption">Image
+                    <label class="form-check-label" for="radiobtn"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="videooption">Video
+                    <label class="form-check-label" for="radiobtn"></label>
+                </div>
+                @*create browse button*@
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="IDfilename" name="thisfilename">
+                </div>
+                @*create submit button*@
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    }
+</div>
+   
+
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {                
+            });
+
+    });
+</script>
+<p style="color: red;"></p> <!--Display error message-->
